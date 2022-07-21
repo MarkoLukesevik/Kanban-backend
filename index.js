@@ -37,29 +37,35 @@ app.put("/api/tasks/:id", (req, res) => {
     (task) => task.id === parseInt(req.params.id)
   );
 
-  let copy = { ...req.body };
-
-  let currentColumn = columns.columns.find((column) => {
-    return column.boardId === req.body.boardId;
-  });
-  console.log(currentColumn);
-  let statusIndex = currentColumn.names.indexOf(req.body.status);
-  let counter = 0;
-  copy.subtasks.forEach((subtask) => {
-    if (subtask.isCompleted) counter++;
-  });
-
-  if (counter === copy.subtasks.length) {
-    copy.status = currentColumn.names[currentColumn.names.length - 1];
-  }
-  if (counter >= 1 && counter < currentColumn.names.length) {
-    copy.status = currentColumn.names[statusIndex + 1];
-  }
+  handleSubtasks(req.body);
 
   let editedTaskIndex = tasks.tasks.indexOf(editedTask);
-  tasks.tasks[editedTaskIndex] = copy;
-  res.send(copy);
+  tasks.tasks[editedTaskIndex] = req.body;
+
+  res.send(req.body);
 });
+
+const handleSubtasks = (task) => {
+  let currentColumn = columns.columns.find(
+    (column) => column.boardId === task.boardId
+  );
+  let statusIndex = currentColumn.names.indexOf(task.status);
+
+  let counter = countCompletedSubtasks(task.subtasks);
+  if (counter === task.subtasks.length) {
+    task.status = currentColumn.names[currentColumn.names.length - 1];
+  }
+  if (counter >= 1 && counter < currentColumn.names.length) {
+    task.status = currentColumn.names[statusIndex + 1];
+  }
+};
+const countCompletedSubtasks = (subtasks) => {
+  let counter = 0;
+  subtasks.forEach((subtask) => {
+    if (subtask.isCompleted) counter++;
+  });
+  return counter;
+};
 
 app.delete("/api/tasks/:id", (req, res) => {
   let filteredTasks = tasks.tasks.filter((task) => {
