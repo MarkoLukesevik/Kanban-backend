@@ -42,6 +42,12 @@ app.get("/api/boards/:id/tasks", (req, res) => {
   res.send(filteredTasks);
 });
 
+app.post("/api/boards/:id/tasks", (req, res) => {
+  let taskToAdd = { ...req.body, id: generateId(), boardId: req.params.id };
+  tasks.tasks.push(taskToAdd);
+  res.send(tasks.tasks);
+});
+
 app.get("/api/tasks/:id", (req, res) => {
   let foundtask = tasks.tasks.find((task) => task.id === req.params.id);
   res.send(foundtask);
