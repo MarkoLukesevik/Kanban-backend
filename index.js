@@ -14,6 +14,7 @@ app.get("/api/boards", (req, res) => {
 app.post("/api/boards", (req, res) => {
   let newBoard = { ...req.body, id: generateId() };
   boards.boards.push(newBoard);
+  columns.columns.push({ boardId: newBoard.id, names: [] });
 
   res.send(boards);
 });
@@ -21,6 +22,17 @@ app.post("/api/boards", (req, res) => {
 app.get("/api/boards/:id/columns", (req, res) => {
   let boardColumns = columns.columns.find((e) => e.boardId === req.params.id);
   res.send(boardColumns);
+});
+
+app.post("/api/boards/:id/columns", (req, res) => {
+  let updatedColumn = columns.columns.find((e) => e.boardId === req.params.id);
+  updatedColumn.names.push(req.body.name);
+  let filteredColumns = columns.columns.filter(
+    (column) => column.boardId !== req.params.id
+  );
+  filteredColumns.push(updatedColumn);
+  columns.columns = filteredColumns;
+  res.send(updatedColumn);
 });
 
 app.get("/api/boards/:id/tasks", (req, res) => {
@@ -75,24 +87,29 @@ const countCompletedSubtasks = (subtasks) => {
 };
 
 app.delete("/api/tasks/:id", (req, res) => {
-  let filteredTasks = filterNotEqual(tasks.tasks, req.params.id);
+  let filteredTasks = filterNotEqual(tasks.tasks, "boardId", req.params.id);
   tasks.tasks = filteredTasks;
   res.send(filteredTasks);
 });
 
 app.delete("/api/boards/:id", (req, res) => {
-  let filteredBoards = filterNotEqual(boards.boards, req.params.id);
-  let filteredColumns = filterNotEqual(columns.columns, req.params.id);
-  let filteredTasks = filterNotEqual(tasks.tasks, req.params.id);
+  let filteredBoards = filterNotEqual(boards.boards, "id", req.params.id);
+  let filteredColumns = filterNotEqual(
+    columns.columns,
+    "boardId",
+    req.params.id
+  );
+  let filteredTasks = filterNotEqual(tasks.tasks, "boardId", req.params.id);
 
   boards.boards = filteredBoards;
   columns.columns = filteredColumns;
   tasks.tasks = filteredTasks;
+  console.log(tasks.tasks.length);
   res.send(filteredBoards);
 });
 
-const filterNotEqual = (arr, id) => {
-  return arr.filter((item) => item.id !== id);
+const filterNotEqual = (arr, attr, id) => {
+  return arr.filter((item) => item[`${attr}`] !== id);
 };
 
 const port = process.env.PORT || 5000;
