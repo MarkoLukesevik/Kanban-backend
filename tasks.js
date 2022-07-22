@@ -1,7 +1,9 @@
+let generateId = require("./generateId");
+
 module.exports.tasks = [
   {
-    id: 1,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Build UI for onboarding flow",
     description: "",
     status: "Todo",
@@ -21,8 +23,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 2,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Build UI for search",
     description: "",
     status: "Todo",
@@ -34,8 +36,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 3,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Build settings UI",
     description: "",
     status: "Todo",
@@ -51,8 +53,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 4,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "QA and test all major user journeys",
     description:
       "Once we feel version one is ready, we need to rigorously test it both internally and externally to identify any major gaps.",
@@ -69,8 +71,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 5,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Design settings and search pages",
     description: "",
     status: "Doing",
@@ -90,8 +92,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 6,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Add account management endpoints",
     description: "",
     status: "Doing",
@@ -111,8 +113,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 7,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Design onboarding flow",
     description: "",
     status: "Doing",
@@ -132,8 +134,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 8,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Add search enpoints",
     description: "",
     status: "Doing",
@@ -149,8 +151,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 9,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Add authentication endpoints",
     description: "",
     status: "Doing",
@@ -166,8 +168,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 10,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title:
       "Research pricing points of various competitors and trial different business models",
     description:
@@ -190,8 +192,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 11,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Conduct 5 wireframe tests",
     description:
       "Ensure the layout continues to make sense and we have strong buy-in from potential users.",
@@ -204,8 +206,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 12,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Create wireframe prototype",
     description:
       "Create a greyscale clickable wireframe prototype to test our asssumptions so far.",
@@ -218,8 +220,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 13,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Review results of usability tests and iterate",
     description:
       "Keep iterating through the subtasks until we're clear on the core concepts for the app.",
@@ -240,8 +242,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 14,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title:
       "Create paper prototypes and conduct 10 usability tests with potential customers",
     description: "",
@@ -258,8 +260,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 15,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Market discovery",
     description:
       "We need to define and refine our core product. Interviews will help us learn common pain points and help us define the strongest MVP.",
@@ -272,8 +274,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 16,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Competitor analysis",
     description: "",
     status: "Done",
@@ -289,8 +291,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 17,
-    boardId: 1,
+    id: generateId(),
+    boardId: "8bd115eb-89be-4336-9eb1-655a7959fdde",
     title: "Research the market",
     description:
       "We need to get a solid overview of the market to ensure we have up-to-date estimates of market size and demand.",
@@ -307,8 +309,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 18,
-    boardId: 2,
+    id: generateId(),
+    boardId: "9da5c18b-eb4a-42cb-a763-e430e5c7ad01",
     title: "Plan Product Hunt launch",
     description: "",
     status: "Todo",
@@ -340,8 +342,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 19,
-    boardId: 2,
+    id: generateId(),
+    boardId: "9da5c18b-eb4a-42cb-a763-e430e5c7ad01",
     title: "Share on Show HN",
     description: "",
     status: "Todo",
@@ -361,8 +363,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 20,
-    boardId: 2,
+    id: generateId(),
+    boardId: "9da5c18b-eb4a-42cb-a763-e430e5c7ad01",
     title: "Write launch article to publish on multiple channels",
     description: "",
     status: "Todo",
@@ -386,8 +388,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 21,
-    boardId: 3,
+    id: generateId(),
+    boardId: "bcbf9251-fcba-4f24-8809-de3a76046c94",
     title: "Launch version one",
     description: "",
     status: "Now",
@@ -403,8 +405,8 @@ module.exports.tasks = [
     ],
   },
   {
-    id: 22,
-    boardId: 3,
+    id: generateId(),
+    boardId: "bcbf9251-fcba-4f24-8809-de3a76046c94",
     title: "Review early feedback and plan next steps for roadmap",
     description:
       "Beyond the initial launch, we're keeping the initial roadmap completely empty. This meeting will help us plan out our next steps based on actual customer feedback.",
