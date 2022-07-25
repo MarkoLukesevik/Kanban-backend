@@ -12,11 +12,16 @@ app.get("/api/boards", (req, res) => {
   res.send(boards);
 });
 app.post("/api/boards", (req, res) => {
-  let newBoard = { ...req.body, id: generateId() };
+  let newBoard = { name: req.body.name, id: generateId() };
   boards.boards.push(newBoard);
-  columns.columns.push({ boardId: newBoard.id, names: [] });
-
+  columns.columns.push({ boardId: newBoard.id, names: req.body.columns });
   res.send(boards);
+});
+
+app.put("/api/boards", (req, res) => {
+  let boardToEdit = boards.boards.find((board) => board.id === req.params.id);
+  boardToEdit.name = req.body;
+  res.send(boardToEdit);
 });
 
 app.get("/api/boards/:id/columns", (req, res) => {
@@ -33,6 +38,27 @@ app.post("/api/boards/:id/columns", (req, res) => {
   filteredColumns.push(updatedColumn);
   columns.columns = filteredColumns;
   res.send(updatedColumn);
+});
+
+app.put("/api/boards/:id/columns", (req, res) => {
+  let boardColumns = columns.columns.find((e) => e.boardId === req.params.id);
+
+  let index = columns.columns.indexOf(boardColumns);
+  boardColumns.names = req.body;
+  columns.columns[index] = boardColumns;
+  res.send(boardColumns);
+});
+
+app.delete("/api/boards/:id/columns", (req, res) => {
+  let boardColumns = columns.columns.find((e) => e.boardId === req.params.id);
+
+  let filteredColumns = boardColumns.names.filter(
+    (name) => name !== req.body.name
+  );
+  let index = columns.columns.indexOf(boardColumns);
+  boardColumns.names = filteredColumns;
+  columns.columns[index] = boardColumns;
+  res.send(boardColumns);
 });
 
 app.get("/api/boards/:id/tasks", (req, res) => {
@@ -56,7 +82,7 @@ app.get("/api/tasks/:id", (req, res) => {
 app.put("/api/tasks/:id", (req, res) => {
   let taskToEdit = tasks.tasks.find((task) => task.id === req.params.id);
 
-  handleSubtasks(req.body);
+  toggleSubtasks(req.body);
   handleStatusChange(req.body);
 
   let taskToEditIndex = tasks.tasks.indexOf(taskToEdit);
@@ -74,7 +100,7 @@ const handleStatusChange = (task) => {
   }
 };
 
-const handleSubtasks = (task) => {
+const toggleSubtasks = (task) => {
   let currentColumn = columns.columns.find(
     (column) => column.boardId === task.boardId
   );
@@ -110,7 +136,6 @@ app.delete("/api/boards/:id", (req, res) => {
   boards.boards = filteredBoards;
   columns.columns = filteredColumns;
   tasks.tasks = filteredTasks;
-  console.log(tasks.tasks.length);
   res.send(filteredBoards);
 });
 
