@@ -9,13 +9,13 @@ let boards = require("./boards");
 let generateId = require("./generateId");
 
 app.get("/api/boards", (req, res) => {
-  res.send(boards);
+  res.send(boards.boards);
 });
 app.post("/api/boards", (req, res) => {
   let newBoard = { name: req.body.name, id: generateId() };
   boards.boards.push(newBoard);
   columns.columns.push({ boardId: newBoard.id, names: req.body.columns });
-  res.send(boards);
+  res.send(boards.boards);
 });
 
 app.put("/api/boards", (req, res) => {
@@ -26,7 +26,7 @@ app.put("/api/boards", (req, res) => {
 
 app.get("/api/boards/:id/columns", (req, res) => {
   let boardColumns = columns.columns.find((e) => e.boardId === req.params.id);
-  res.send(boardColumns);
+  res.send(boardColumns.names);
 });
 
 app.post("/api/boards/:id/columns", (req, res) => {
@@ -37,7 +37,7 @@ app.post("/api/boards/:id/columns", (req, res) => {
   );
   filteredColumns.push(updatedColumn);
   columns.columns = filteredColumns;
-  res.send(updatedColumn);
+  res.send(updatedColumn.names);
 });
 
 app.put("/api/boards/:id/columns", (req, res) => {
@@ -46,7 +46,7 @@ app.put("/api/boards/:id/columns", (req, res) => {
   let index = columns.columns.indexOf(boardColumns);
   boardColumns.names = req.body;
   columns.columns[index] = boardColumns;
-  res.send(boardColumns);
+  res.send(boardColumns.names);
 });
 
 app.delete("/api/boards/:id/columns", (req, res) => {
@@ -58,7 +58,7 @@ app.delete("/api/boards/:id/columns", (req, res) => {
   let index = columns.columns.indexOf(boardColumns);
   boardColumns.names = filteredColumns;
   columns.columns[index] = boardColumns;
-  res.send(boardColumns);
+  res.send(boardColumns.names);
 });
 
 app.get("/api/boards/:id/tasks", (req, res) => {
