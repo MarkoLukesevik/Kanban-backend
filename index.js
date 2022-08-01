@@ -119,9 +119,9 @@ const countCompletedSubtasks = (subtasks) => {
 };
 
 app.delete("/api/tasks/:id", (req, res) => {
-  let filteredTasks = filterNotEqual(tasks.tasks, "boardId", req.params.id);
+  let filteredTasks = filterNotEqual(tasks.tasks, "id", req.params.id);
   tasks.tasks = filteredTasks;
-  res.send(filteredTasks);
+  res.send({});
 });
 
 app.delete("/api/boards/:id", (req, res) => {
